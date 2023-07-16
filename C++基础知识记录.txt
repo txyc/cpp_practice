@@ -52,7 +52,7 @@ b = ++i;
 int array_list[5] = {1,2,3,4,5};
 int array_len = sizeof(array_list) / sizeof(array_list[0]);
 
-2、字符串操作函数
+2、C语言下字符串操作函数
 strcpy(s1, s2)->用于复制字符串s2到s1
 strcat(s1, s2)->将字符串s2连接到s1的末尾
 strlen(s1)->返回字符串s1的长度
@@ -77,7 +77,11 @@ int puts(const char *s)->将字符串s和一个尾随的换行符写入到stdout
 int scanf(const char *format,…)->从标准输入六stdin读取输入，并根据format格式来存放输入
 int printf(const char *format,…)->将输出写入到stdout，根据提供的格式产生输出
 
-2、
+2、<iostream>库下的输入和输出：
+需要指定作用域 using namespace std;
+输入格式形如：
+cin>>string<<endl;
+cout<<string<<endl;
 
 # #############################################
 # 时间：20230714
@@ -118,3 +122,289 @@ int fscanf(FILE *fp, const char *format, ...)
 fscanf() 函数来从文件中读取字符串，但是在遇到第一个空格和换行符时，它会停止读取。
 【示例】
 fscanf(fp, "%s", buff);
+
+# #############################################
+# 时间：20230715
+# 姓名：田鑫
+# 电话：18384121601
+# 邮箱：965622832@qq.com
+# #############################################
+六、STL之string类的默认方法
+
+1、string对象定义的方法：
+#include <string.h>
+string str;
+string str = const char *s;
+string str(const char *s);
+string(int n, char c);
+string(const string &str);
+
+【示例】
+string str1;
+string str1 = "hello";
+string str2("world");
+string str3(5, 'c');
+string str4(str1);
+
+2、string对象获取对象长度的方法size()和length()
+int len1 = str1.size();
+int len2 = str2.length();
+
+3、string对象元素的访问、提取等方法
+cout<<str1[2]<<endl;
+cout<<str1.at(2)<<endl;
+string str4 = str3.substr(3, 2);
+char str_back = str3.back();
+char str_front = str3.front();
+
+4、string对象内元素增加的方法
+str1 += ' ';
+string str3 = str1 + str2;
+str3.append("!");
+str3.push_back(' ');
+str4.insert(4, str2);
+
+5、string对象内元素的删除方法
+str3.pop_back();
+str4.erase(4, 3);
+
+6、string对象内元素的查询、比较、交换等方法
+int pos2 = str3.find(str2);
+int pos1 = str3.rfind(str1);
+str3.compare(str2);
+str1.swap(str2);
+
+7、string对象的其他操作
+string str5;
+bool t1 = str5.empty();
+getline(cin, str5);
+bool t2 = str5.empty();
+
+# #############################################
+# 时间：20230715
+# 姓名：田鑫
+# 电话：18384121601
+# 邮箱：965622832@qq.com
+# #############################################
+七、STL之vector容器的默认方法
+
+1、vector对象的声明定义：
+#include <vector>
+vector<typename> name;
+【示例】
+vector<int> vt_a;
+vector<int> vt_b(10); 
+vector<int> vt_c(10, 1);
+vector<int> vt_d(vt_c);
+vector<int> vt_e(vt_d.begin(), vt_d.begin()+3);
+
+2、vector对象元素访问
+cout<<vt_c[2]<<endl;
+cout<<vt_c.at[2]<<endl;
+cout<<vt_c.front()<<endl;
+cout<<vt_c.back()<<endl;
+
+vector<int>::iterator it = vt_c.begin();
+for(int i=0;i<10;i++){
+    cout<<*(it+i);
+}
+
+for(vector<int>::iterator it=vt_c.begin();it!=vt_c.end();it++){
+    cout<<*(it);
+}
+
+vector<int>::iterator it = vt_c.rbegin();
+for(int i=0;i<10;i++){
+    cout<<*(it+i);
+}
+
+for(vector<int>::iterator it=vt_c.rbegin();it!=vt_c.rend();it++){
+    cout<<*(it);
+}
+
+3、vector对象中增加元素的方法
+vt_c.push_back(5);
+vt_c.insert(vt_c.begin()+2,3);
+vt_c.insert(vt_c.begin()+2,3,3);
+vt_c.insert(vt_c.begin()+2,vt_d.begin(),vt_d.begin()+3);
+
+4、vector对象中删除函数的方法
+vt_c.pop_back();
+vt_c.erase(vt_c.begin()+2);
+vt_c.erase(vt_c.begin()+2, vt_c.begin()+5);
+vt_c.clear();
+
+5、vector对象的容量函数和使用
+cout<<vt_d.size()<<endl;
+cout<<vt_d.capacity()<<endl;
+cout<<vt_d.max_size()<<endl;
+
+6、其他函数和使用方法
+bool flag = vt_c.empty();
+vt_d.swap(vt_e);
+vt_c.assign(3,5);
+vt_c.assign(vt_d.begin()+4, vt_d.begin()+7);
+
+# #############################################
+# 时间：20230716
+# 姓名：田鑫
+# 电话：18384121601
+# 邮箱：965622832@qq.com
+# #############################################
+八、STL之List的默认方法
+
+1、list对象的声明定义方法
+【示例】
+#include <list>
+list<int> lst_a;
+list<int> lst_b(10);
+list<int> lst_c(10, 3);
+list<int> lst_d(lst_c);
+list<int> lst_e(lst_d.begin(), lst_d.end());
+
+2、list对象的访问
+cout<<list_c[2]<<endl;
+cout<<list_c.at[2]<<endl;
+cout<<list_c.back()<<endl;
+cout<<list_c.front()<<endl;
+
+list<int>::iterator it = lst_c.begin();
+for(int i=0;i<10;i++){
+    cout<<*(it+i);
+}
+
+for(vector<int>::iterator it=lst_c.begin();it!=lst_c.end();it++){
+    cout<<*(it);
+}
+
+vector<int>::iterator it = lst_c.rbegin();
+for(int i=0;i<10;i++){
+    cout<<*(it+i);
+}
+
+for(vector<int>::iterator it=lst_c.rbegin();it!=lst_c.rend();it++){
+    cout<<*(it);
+}
+
+3、list对象内元素增加的方法
+lst_c.push_back(4);
+lst_c.push_front(2);
+lst_c.insert(lst_c.begin(), 0);
+
+4、list对象内元素元素删除的方法
+lst_c.pop_back();
+lst_c.pop_front();
+lst_c.erase(--lst_c.end());
+lst_c.clear();
+lst_c.remove(3);
+
+5、list对象容量的获取
+cout<<lst_c.size()<<endl;
+cout<<lst_c.max_size()<<endl;
+cout<<lst_c.empty()<<endl;
+
+6、list对象的其他方法
+lst_c.sort();
+lst_c.swap(lst_d);
+lst_c.assign(3, 2);
+lst_c.unique();
+lst_d.sort();
+lst_c.merge(lst_d); // 要求lst_c和lst_d序列都是有序的
+
+# #############################################
+# 时间：20230716
+# 姓名：田鑫
+# 电话：18384121601
+# 邮箱：965622832@qq.com
+# #############################################
+九、STL之Map的默认方法
+
+1、map对象的声明定义
+#include <map>
+
+map<int, string> ID_name;
+map<int, string> ID_name = {
+    {2015, "Jim"},
+    {2016, "Kate"},
+    {2017, "Mike"}
+};
+map<int, string> ID_name1(ID_name);
+map<int, string> ID_name2(id_name.begin(), ID_name.end());
+
+2、map对象的访问
+cout<<ID_name[2015]<<endl;
+map<int, string>::iterator iter = ID_name.begin();
+while(iter != ID_name.end()) {
+    cout<<iter->first<<" : "<<iter->second<<endl;
+    iter++;
+}
+
+map<int, string>::iterator riter = ID_name.rbegin();
+while(riter != ID_name.rend()) {
+    cout<<riter->first<<" : "<<riter->second<<endl;
+    riter++;
+}
+//下面两个方法可以用于查询map内是否存在指定的键值，而不插入新的键值
+cout<<ID_name.count(2023)<<endl;
+
+map<int, string>::f_iter = ID_name.find(2023);
+if(f_iter == ID_name.end()){
+    cout<<"指定map中不存在查询的键值"<<endl;
+}
+
+3、map对象内元素新增的方法
+ID_name[2018] = "Susam";
+ID_name.insert(pair<int, string>(2019, "Kevin"));
+ID_name.insert(mak_pair(2020, "Jack"));
+ID_name[2021] = "Marsh";
+ID_name1.insert(ID_name.begin()+4, ID_name.end());
+
+4、map对象内元素删除的方法
+ID_name.erase(2018);
+map<int, string>::iter = ID_name.begin();
+ID_name.erase(iter);
+ID_name.erase(ID_name.begin()+3, ID_name.end());
+ID_name.clear();
+
+5、map对象中元素的容量
+ID_name.size();
+ID_name.max_size();
+cout<<ID_name.empty();
+
+6、map对象的其他方法
+ID_name.swap(ID_name1);
+
+# #############################################
+# 时间：20230716
+# 姓名：田鑫
+# 电话：18384121601
+# 邮箱：965622832@qq.com
+# #############################################
+十、STL之Set的默认方法
+
+1、set对象的声明定义和部分方法使用
+// set对象会自动去重并按升序排列
+#include <set>
+
+set<int> set_a;
+for(int i = 0; i < 10; i++){
+    set_a.insert(i);
+}
+
+cout<<set_a.size()<<endl;
+cout<<set_a.max_size()<<endl;
+cout<<set_a.empty()<<endl;
+
+for(set<int>::iterator iter = set_a.begin(); iter != set_a.end(); iter++){
+    cout<<*iter<<endl;
+}
+
+set_a.clear();
+
+
+
+
+
+
+
+
